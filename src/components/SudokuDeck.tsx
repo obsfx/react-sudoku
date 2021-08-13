@@ -126,7 +126,7 @@ const SudokuDeck: React.FC<{
               >
                 <DeckInput
                   type="text"
-                  conflict={conflictedCells.some(({ r, c }) => r === i && c === j)}
+                  conflict={!preview && conflictedCells.some(({ r, c }) => r === i && c === j)}
                   value={value === 0 ? '' : value}
                   maxLength={1}
                   readOnly={predefined || preview}
