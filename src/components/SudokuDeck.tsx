@@ -88,19 +88,17 @@ const SudokuDeck: React.FC<{
   }
 
   const checkSquare = (r: number, c: number, newVal: number) => {
-    const cellGroupRow = Math.floor(r / 3)
-    const cellGroupCol = Math.floor(c / 3)
-
-    console.log(cellGroupRow, cellGroupCol)
+    const cellGroupRow = Math.floor(r / 3) * 3
+    const cellGroupCol = Math.floor(c / 3) * 3
 
     board.slice(cellGroupRow, cellGroupRow + 3).forEach((row, i) =>
       row.slice(cellGroupCol, cellGroupCol + 3).forEach(({ value }, j) => {
-        if (r !== i && c !== j && value === newVal) {
+        if (r !== i + cellGroupRow && c !== j + cellGroupCol && value === newVal) {
           setConflictedCells([
             ...useStore.getState().conflictedCells,
             {
-              r: i,
-              c: j,
+              r: i + cellGroupRow,
+              c: j + cellGroupCol,
               move: {
                 r,
                 c,
