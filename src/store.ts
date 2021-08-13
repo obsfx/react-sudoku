@@ -6,11 +6,14 @@ export interface State {
   moves: { r: number; c: number; value: number }[]
   conflictedCells: { r: number; c: number; value: number }[]
 
+  reset: () => void
   setTime: (time: number) => void
   setBoard: (board: null | { value: number; predefined: boolean }[][]) => void
   setCell: (r: number, c: number, value: number) => void
   setMoves: (moves: { r: number; c: number; value: number }[]) => void
-  setConflictedCells: (cells: { r: number; c: number; value: number }[]) => void
+  setConflictedCells: (
+    cells: { r: number; c: number; value: number; move: { r: number; c: number } }[]
+  ) => void
 }
 
 const useStore = create<State>(
@@ -20,6 +23,13 @@ const useStore = create<State>(
     moves: [],
     conflictedCells: [],
 
+    reset: () =>
+      set({
+        time: 0,
+        board: null,
+        moves: [],
+        conflictedCells: [],
+      }),
     setTime: (time: number) => set({ time }),
     setBoard: (board: null | { value: number; predefined: boolean }[][]) => set({ board }),
     setCell: (r: number, c: number, newVal: number) =>
@@ -35,8 +45,9 @@ const useStore = create<State>(
             }
       ),
     setMoves: (moves: { r: number; c: number; value: number }[]) => set({ moves }),
-    setConflictedCells: (cells: { r: number; c: number; value: number }[]) =>
-      set({ conflictedCells: cells }),
+    setConflictedCells: (
+      cells: { r: number; c: number; value: number; move: { r: number; c: number } }[]
+    ) => set({ conflictedCells: cells }),
   })
 )
 

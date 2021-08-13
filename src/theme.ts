@@ -159,8 +159,6 @@ export const DeckBlurred = styled.div`
 export const DeckSelectSudokuButton = styled(RouterLink)`
   margin-top: 1rem;
   cursor: pointer;
-  background: none;
-  border: none;
   font-weight: 500;
   padding: 0.6rem 0rem;
   width: 100%;
@@ -209,6 +207,39 @@ export const SudokuPreviewWrapper = styled.div`
 `
 
 export const SudokuStartButton = styled(DeckSelectSudokuButton)``
+
+export const SudokuButtonWrapper = styled.div`
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const SudokuButton = styled.button`
+  background: none;
+  border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.6rem 0rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  background-color: #e3e3e3;
+  text-align: center;
+  color: #222222;
+  text-decoration: none;
+  width: 49%;
+
+  &:disabled {
+    background-color: #f5efef;
+    color: #a5a5a5;
+  }
+
+  &:hover {
+    background-color: #cecece;
+  }
+`
 
 export const Card = styled.div`
   padding: 1rem 1.4rem;

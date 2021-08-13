@@ -8,11 +8,17 @@ const SudokuDeck: React.FC<{
   cellHeight: string
 }> = ({ board, preview, cellWidth, cellHeight }) => {
   const setCell = useStore((state) => state.setCell)
+  const moves = useStore((state) => state.moves)
+  const setMoves = useStore((state) => state.setMoves)
 
   const handleOnChange = (r: number, c: number, value: string) => {
     if (/^[1-9]+$/.test(value)) {
       setCell(r, c, Number(value))
     }
+  }
+
+  const handleOnBlur = (r: number, c: number, value: string) => {
+    setMoves([...moves, { r, c, value: Number(value) }])
   }
 
   return (
@@ -41,6 +47,7 @@ const SudokuDeck: React.FC<{
                   width={cellWidth}
                   height={cellHeight}
                   onChange={(e) => value === 0 && !preview && handleOnChange(i, j, e.target.value)}
+                  onBlur={(e) => handleOnBlur(i, j, e.target.value)}
                 />
               </DeckCell>
             ))}

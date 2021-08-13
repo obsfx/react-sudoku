@@ -1,6 +1,13 @@
 import { useEffect } from 'react'
 
-import { ContentWrapper, DeckContainer, DeckBlurred, DeckSelectSudokuButton } from '../theme'
+import {
+  ContentWrapper,
+  DeckContainer,
+  DeckBlurred,
+  DeckSelectSudokuButton,
+  SudokuButtonWrapper,
+  SudokuButton,
+} from '../theme'
 
 import SudokuDeck from '../components/SudokuDeck'
 import Time from '../components/Time'
@@ -18,6 +25,9 @@ const Sudoku: React.FC = () => {
   const board = useStore((state) => state.board)
   const time = useStore((state) => state.time)
   const setTime = useStore((state) => state.setTime)
+  const setCell = useStore((state) => state.setCell)
+  const moves = useStore((state) => state.moves)
+  const setMoves = useStore((state) => state.setMoves)
 
   useEffect(() => {
     if (board) {
@@ -40,9 +50,22 @@ const Sudoku: React.FC = () => {
     )
   }, [time, board])
 
+  const handleUndo = () => {
+    const lastMove = moves[moves.length - 1]
+    setCell(lastMove.r, lastMove.c, 0)
+    setMoves(moves.slice(0, moves.length - 1))
+  }
+
   return (
     <ContentWrapper>
       <Time time={time} />
+
+      <SudokuButtonWrapper>
+        <SudokuButton onClick={handleUndo} disabled={moves.length === 0}>
+          Undo
+        </SudokuButton>
+        <SudokuButton>Check</SudokuButton>
+      </SudokuButtonWrapper>
 
       <DeckContainer>
         {!board && (
