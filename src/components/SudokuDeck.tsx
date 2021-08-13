@@ -30,10 +30,12 @@ const SudokuDeck: React.FC<{
 
   const handleOnBlur = (r: number, c: number, value: string) => {
     const cellVal = valueBuffer !== 0 && Number(value) === 0 ? valueBuffer : Number(value)
+    setConflictedCells(conflictedCells.filter(({ move }) => move.r !== r || move.c !== c))
 
     setCell(r, c, cellVal)
     if (cellVal !== 0) {
       checkRow(r, c, cellVal)
+      checkCol(r, c, cellVal)
     }
     setMoves([
       ...moves.filter(({ r: mr, c: mc }) => mr !== r && mc !== c),
@@ -43,25 +45,38 @@ const SudokuDeck: React.FC<{
   }
 
   const checkRow = (r: number, c: number, newVal: number) => {
-    let filteredConflictedCells = conflictedCells.filter(({ move }) => move.r !== r && move.c !== c)
-
     board[r].forEach(({ value }, j: number) => {
       if (c !== j && value === newVal) {
-        filteredConflictedCells = [
-          ...filteredConflictedCells,
+        setConflictedCells([
+          ...useStore.getState().conflictedCells,
           {
             r: r,
             c: j,
-            value,
             move: {
               r,
               c,
             },
           },
-        ]
+        ])
       }
+    })
+  }
 
-      setConflictedCells(filteredConflictedCells)
+  const checkCol = (r: number, c: number, newVal: number) => {
+    board.forEach((row, i: number) => {
+      if (r !== i && row[c].value === newVal) {
+        setConflictedCells([
+          ...useStore.getState().conflictedCells,
+          {
+            r: i,
+            c: c,
+            move: {
+              r,
+              c,
+            },
+          },
+        ])
+      }
     })
   }
 

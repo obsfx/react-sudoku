@@ -8,7 +8,6 @@ export interface State {
   conflictedCells: {
     r: number
     c: number
-    value: number
     move: { r: number; c: number }
   }[]
 
@@ -21,7 +20,6 @@ export interface State {
     cells: {
       r: number
       c: number
-      value: number
       move: { r: number; c: number }
     }[]
   ) => void
@@ -79,7 +77,6 @@ const useStore = create<State>(
       cells: {
         r: number
         c: number
-        value: number
         move: { r: number; c: number }
       }[]
     ) => set({ conflictedCells: cells }),
