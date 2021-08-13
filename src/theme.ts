@@ -1,7 +1,7 @@
 import 'typeface-inter'
 import 'normalize.css'
 import styled, { createGlobalStyle } from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link as RouterLink } from 'react-router-dom'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -41,8 +41,9 @@ export const GlobalStyle = createGlobalStyle`
 export const ContentWrapper = styled.div`
   width: 100%;
   max-width: 900px;
-  padding: 1rem;
+  padding: 2vh 1rem;
   margin: auto;
+  position: relative;
 `
 
 export const ContentTitle = styled.div`
@@ -138,6 +139,41 @@ export const DeckInput = styled.input<{
 export const DeckContainer = styled.div`
   display: flex;
   justify-content: center;
+  padding-top: 2rem;
+  position: relative;
+`
+
+export const DeckBlurred = styled.div`
+  backdrop-filter: blur(4px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const DeckSelectSudokuButton = styled(RouterLink)`
+  margin-top: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 500;
+  padding: 0.6rem 0rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  background-color: #e3e3e3;
+  text-align: center;
+  color: #222222;
+  text-decoration: none;
+  max-width: 300px;
+
+  &:hover {
+    background-color: #cecece;
+  }
 `
 
 export const SudokuOptionsContainer = styled.div`
@@ -172,18 +208,24 @@ export const SudokuPreviewWrapper = styled.div`
   align-items: center;
 `
 
-export const SudokuStartButton = styled.button`
-  margin-top: 1rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-weight: 500;
-  padding: 0.6rem 0rem;
-  width: 100%;
-  border-radius: 0.2rem;
-  background-color: #e3e3e3;
+export const SudokuStartButton = styled(DeckSelectSudokuButton)``
 
-  &:hover {
-    background-color: #cecece;
-  }
+export const Card = styled.div`
+  padding: 1.4rem 1.8rem;
+  background-color: #dfffbf;
+  border-radius: 0.6rem;
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+`
+
+export const CardTitle = styled.div`
+  font-weight: 500;
+  font-size: 1.2rem;
+`
+
+export const CardValue = styled.div`
+  padding-top: 0.6rem;
+  font-weight: bold;
+  font-size: 2rem;
 `

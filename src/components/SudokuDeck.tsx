@@ -1,14 +1,14 @@
 import { DeckWrapper, DeckRow, DeckCell, DeckInput } from '../theme'
 
 const SudokuDeck: React.FC<{
-  deck: number[][]
+  board: number[][]
   preview: boolean
   cellWidth: string
   cellHeight: string
-}> = ({ deck, preview, cellWidth, cellHeight }) => {
+}> = ({ board, preview, cellWidth, cellHeight }) => {
   return (
     <DeckWrapper>
-      {deck.map((row: number[], i: number, arr: number[][]) => (
+      {board.map((row: number[], i: number, arr: number[][]) => (
         <DeckRow key={i}>
           {row.map((value: number, j: number) => (
             <DeckCell
