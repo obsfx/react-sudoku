@@ -12,8 +12,10 @@ const SudokuDeck: React.FC<{
 
   const setCell = useStore((state) => state.setCell)
   const moves = useStore((state) => state.moves)
-  const emptyCellCount = useStore((state) => state.emptyCellCount)
   const setMoves = useStore((state) => state.setMoves)
+  const conflictedCells = useStore((state) => state.conflictedCells)
+  const setConflictedCells = useStore((state) => state.setConflictedCells)
+  const emptyCellCount = useStore((state) => state.emptyCellCount)
 
   const handleOnFocus = (r: number, c: number, value: string) => {
     setValueBuffer(Number(value))
@@ -27,13 +29,40 @@ const SudokuDeck: React.FC<{
   }
 
   const handleOnBlur = (r: number, c: number, value: string) => {
-    if (valueBuffer !== 0) {
-      setCell(r, c, valueBuffer)
-    } else if (Number(value) !== 0) {
-      setMoves([...moves, { r, c, value: Number(value) }])
-    }
+    const cellVal = valueBuffer !== 0 && Number(value) === 0 ? valueBuffer : Number(value)
 
-    console.log(emptyCellCount)
+    setCell(r, c, cellVal)
+    if (cellVal !== 0) {
+      checkRow(r, c, cellVal)
+    }
+    setMoves([
+      ...moves.filter(({ r: mr, c: mc }) => mr !== r && mc !== c),
+      { r, c, value: Number(cellVal) },
+    ])
+    console.log(useStore.getState().emptyCellCount)
+  }
+
+  const checkRow = (r: number, c: number, newVal: number) => {
+    let filteredConflictedCells = conflictedCells.filter(({ move }) => move.r !== r && move.c !== c)
+
+    board[r].forEach(({ value }, j: number) => {
+      if (c !== j && value === newVal) {
+        filteredConflictedCells = [
+          ...filteredConflictedCells,
+          {
+            r: r,
+            c: j,
+            value,
+            move: {
+              r,
+              c,
+            },
+          },
+        ]
+      }
+
+      setConflictedCells(filteredConflictedCells)
+    })
   }
 
   return (
@@ -53,6 +82,7 @@ const SudokuDeck: React.FC<{
               >
                 <DeckInput
                   type="text"
+                  conflict={conflictedCells.some(({ r, c }) => r === i && c === j)}
                   value={value === 0 ? '' : value}
                   maxLength={1}
                   readOnly={predefined || preview}

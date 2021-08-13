@@ -32,14 +32,8 @@
     "fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
+    "extends": ["react-app", "react-app/jest", "prettier"],
+    "plugins": ["prettier"],
     "rules": {
       "prefer-const": "error",
       "@typescript-eslint/no-unused-vars": "off",
@@ -48,11 +42,7 @@
     }
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

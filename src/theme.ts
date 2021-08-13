@@ -111,6 +111,7 @@ export const DeckInput = styled.input<{
   borderBottom?: boolean
   predefined?: boolean
   readOnly?: boolean
+  conflict?: boolean
   width: string
   height: string
 }>`
@@ -119,7 +120,8 @@ export const DeckInput = styled.input<{
   color: #222222;
   ${({ borderRight }) => (borderRight ? `border-right: 1px solid #d4d4d4;` : ``)}
   ${({ borderBottom }) => (borderBottom ? `border-bottom: 1px solid #d4d4d4;` : ``)}
-  background-color: ${({ predefined }) => (!predefined ? `#f4f4f4` : `#e5e5e5`)};
+  background-color: ${({ conflict, predefined }) =>
+    conflict ? `#ff9a9a` : !predefined ? `#f4f4f4` : `#e5e5e5`};
   text-align: center;
   font-size: 1.2rem;
   font-weight: 500;

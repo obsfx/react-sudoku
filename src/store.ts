@@ -2,25 +2,35 @@ import create, { SetState } from 'zustand'
 
 export interface State {
   time: number
-  board: null | { value: number; predefined: boolean }[][]
+  board: { value: number; predefined: boolean }[][]
   emptyCellCount: number
   moves: { r: number; c: number; value: number }[]
-  conflictedCells: { r: number; c: number; value: number }[]
+  conflictedCells: {
+    r: number
+    c: number
+    value: number
+    move: { r: number; c: number }
+  }[]
 
   reset: () => void
   setTime: (time: number) => void
-  setBoard: (board: null | { value: number; predefined: boolean }[][]) => void
+  setBoard: (board: { value: number; predefined: boolean }[][]) => void
   setCell: (r: number, c: number, value: number) => void
   setMoves: (moves: { r: number; c: number; value: number }[]) => void
   setConflictedCells: (
-    cells: { r: number; c: number; value: number; move: { r: number; c: number } }[]
+    cells: {
+      r: number
+      c: number
+      value: number
+      move: { r: number; c: number }
+    }[]
   ) => void
 }
 
 const useStore = create<State>(
   (set: SetState<State>): State => ({
     time: 0,
-    board: null,
+    board: [],
     moves: [],
     emptyCellCount: 0,
     conflictedCells: [],
@@ -28,12 +38,12 @@ const useStore = create<State>(
     reset: () =>
       set({
         time: 0,
-        board: null,
+        board: [],
         moves: [],
         conflictedCells: [],
       }),
     setTime: (time: number) => set({ time }),
-    setBoard: (board: null | { value: number; predefined: boolean }[][]) => {
+    setBoard: (board: { value: number; predefined: boolean }[][]) => {
       set({ board })
       if (board) {
         set({
@@ -45,17 +55,13 @@ const useStore = create<State>(
       }
     },
     setCell: (r: number, c: number, newVal: number) => {
-      set((state) =>
-        !state.board
-          ? { board: null }
-          : {
-              board: state.board.map((row: { value: number; predefined: boolean }[], i: number) =>
-                row.map(({ value, predefined }, j: number) =>
-                  i === r && j === c ? { value: newVal, predefined } : { value, predefined }
-                )
-              ),
-            }
-      )
+      set((state) => ({
+        board: state.board.map((row: { value: number; predefined: boolean }[], i: number) =>
+          row.map(({ value, predefined }, j: number) =>
+            i === r && j === c ? { value: newVal, predefined } : { value, predefined }
+          )
+        ),
+      }))
 
       set((state) => ({
         emptyCellCount: state.board
@@ -70,7 +76,12 @@ const useStore = create<State>(
       set({ moves })
     },
     setConflictedCells: (
-      cells: { r: number; c: number; value: number; move: { r: number; c: number } }[]
+      cells: {
+        r: number
+        c: number
+        value: number
+        move: { r: number; c: number }
+      }[]
     ) => set({ conflictedCells: cells }),
   })
 )
