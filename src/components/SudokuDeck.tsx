@@ -30,10 +30,15 @@ const SudokuDeck: React.FC<{
 
   const handleOnBlur = (r: number, c: number, value: string) => {
     const cellVal = valueBuffer !== 0 && Number(value) === 0 ? valueBuffer : Number(value)
-    setConflictedCells(conflictedCells.filter(({ move }) => move.r !== r || move.c !== c))
-
     setCell(r, c, cellVal)
+
     if (cellVal !== 0) {
+      setConflictedCells(
+        conflictedCells.filter(({ r: cr, c: cc, move }) => {
+          return cr === r && cc === c ? false : move.r !== r || move.c !== c
+        })
+      )
+
       checkRow(r, c, cellVal)
       checkCol(r, c, cellVal)
     }
