@@ -318,4 +318,16 @@ export const ModalContent = styled.div<{
   }
 `
 
-export const HistoryContainer = styled.div``
+export const DescText = styled.div`
+  padding-top: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+`
+
+export const HistoryContainer = styled.div`
+  ${Card} {
+    &:not(:last-child) {
+      margin-bottom: 0.2rem;
+    }
+  }
+`

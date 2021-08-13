@@ -20,10 +20,12 @@ import useStore from '../store'
 const Sudoku: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalContent, setModalContent] = useState('')
+  const [loaded, setLoaded] = useState(false)
   const [completed, setCompleted] = useState(false)
 
   const reset = useStore((state) => state.reset)
   const board = useStore((state) => state.board)
+  const setBoard = useStore((state) => state.setBoard)
   const time = useStore((state) => state.time)
   const setTime = useStore((state) => state.setTime)
   const setCell = useStore((state) => state.setCell)
@@ -34,6 +36,23 @@ const Sudoku: React.FC = () => {
   const setConflictedCells = useStore((state) => state.setConflictedCells)
 
   const history = useHistory()
+
+  useEffect(() => {
+    if (!loaded) {
+      const save = localStorage.getItem('SUDOKU_SAVE')
+
+      if (save) {
+        const state = JSON.parse(save)
+
+        setBoard(state.board)
+        setTime(state.time)
+        setMoves(state.moves)
+        setConflictedCells(state.conflictedCells)
+      }
+
+      setLoaded(true)
+    }
+  }, [loaded, setBoard, setConflictedCells, setMoves, setTime])
 
   useEffect(() => {
     if (board.length > 0 && !completed) {
@@ -54,7 +73,6 @@ const Sudoku: React.FC = () => {
           time,
           board,
           moves,
-          emptyCellCount,
           conflictedCells,
         })
       )
@@ -88,15 +106,13 @@ const Sudoku: React.FC = () => {
 
       localStorage.setItem(
         'SUDOKU_HISTORY',
-        JSON.stringify({
-          data: [
-            ...historyArr,
-            {
-              time,
-              id: Date.now(),
-            },
-          ],
-        })
+        JSON.stringify([
+          ...historyArr,
+          {
+            time,
+            id: Date.now(),
+          },
+        ])
       )
     } else if (conflictedCells.length > 0) {
       setModalContent('You have to solve the conflicts to complete this sudoku.')
