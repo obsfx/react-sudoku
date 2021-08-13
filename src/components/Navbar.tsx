@@ -4,11 +4,19 @@ const Navbar: React.FC = () => {
   return (
     <NavbarWrapper>
       <Link to="/" exact activeClassName="navbar-link-active">
-        Home
+        Main
       </Link>
 
-      <Link to="/start-playing" activeClassName="navbar-link-active">
-        Start Playing
+      <Link to="/select-sudoku" activeClassName="navbar-link-active">
+        Select Sudoku
+      </Link>
+
+      <Link to="/play" activeClassName="navbar-link-active">
+        Play
+      </Link>
+
+      <Link to="/history" activeClassName="navbar-link-active">
+        History
       </Link>
     </NavbarWrapper>
   )

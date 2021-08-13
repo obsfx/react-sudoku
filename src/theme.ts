@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 16px;
+
+    @media (max-width: 574px) {
+      font-size: 11px;
+    }
   }
 
   body {
@@ -36,9 +40,17 @@ export const GlobalStyle = createGlobalStyle`
 `
 export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 1100px;
+  max-width: 900px;
   padding: 1rem;
   margin: auto;
+`
+
+export const ContentTitle = styled.div`
+  font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+  background-color: #f0f0f0;
+  display: inline-flex;
+  border-radius: 0.4rem;
 `
 
 export const NavbarWrapper = styled.div`
@@ -61,6 +73,7 @@ export const Link = styled(NavLink)`
   padding: 0.6rem 2rem;
   text-decoration: none;
   font-weight: 500;
+  text-align: center;
 
   &:not(:last-child) {
     margin-right: 0.2rem;
@@ -72,7 +85,7 @@ export const Link = styled(NavLink)`
 `
 
 export const DeckWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   border: 3px solid #d4d4d4;
@@ -97,9 +110,11 @@ export const DeckInput = styled.input<{
   borderBottom?: boolean
   predefined?: boolean
   readOnly?: boolean
+  width: string
+  height: string
 }>`
-  width: 3rem;
-  height: 3rem;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   color: #222222;
   ${({ borderRight }) => (borderRight ? `border-right: 1px solid #d4d4d4;` : ``)}
   ${({ borderBottom }) => (borderBottom ? `border-bottom: 1px solid #d4d4d4;` : ``)}
@@ -123,4 +138,52 @@ export const DeckInput = styled.input<{
 export const DeckContainer = styled.div`
   display: flex;
   justify-content: center;
+`
+
+export const SudokuOptionsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 1.6rem;
+`
+
+export const SudokuOptionWrapper = styled.div`
+  border-radius: 0.4rem;
+  width: 33%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 770px) {
+    width: 50%;
+  }
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+`
+
+export const SudokuPreviewWrapper = styled.div`
+  background-color: #eeeeee;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const SudokuStartButton = styled.button`
+  margin-top: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 500;
+  padding: 0.6rem 0rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  background-color: #e3e3e3;
+
+  &:hover {
+    background-color: #cecece;
+  }
 `
