@@ -26,7 +26,7 @@ const Sudoku: React.FC = () => {
   const setConflictedCells = useStore((state) => state.setConflictedCells)
 
   useEffect(() => {
-    if (board) {
+    if (board.length > 0) {
       const interval = setInterval(() => {
         setTime(time + 1)
       }, 1000)

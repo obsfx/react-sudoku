@@ -10,11 +10,11 @@ import Decks from '../sudoku-decks'
 import useStore from '../store'
 
 const SelectSudoku: React.FC = () => {
-  const setTime = useStore((state) => state.setTime)
+  const reset = useStore((state) => state.reset)
   const setBoard = useStore((state) => state.setBoard)
 
   const handleStart = (board: { value: number; predefined: boolean }[][]) => {
-    setTime(0)
+    reset()
     setBoard(board)
   }
 

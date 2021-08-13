@@ -41,6 +41,7 @@ const SudokuDeck: React.FC<{
 
       checkRow(r, c, cellVal)
       checkCol(r, c, cellVal)
+      checkSquare(r, c, cellVal)
     }
 
     setMoves([
@@ -51,7 +52,7 @@ const SudokuDeck: React.FC<{
   }
 
   const checkRow = (r: number, c: number, newVal: number) => {
-    board[r].forEach(({ value }, j: number) => {
+    board[r].forEach(({ value }, j) => {
       if (c !== j && value === newVal) {
         setConflictedCells([
           ...useStore.getState().conflictedCells,
@@ -69,7 +70,7 @@ const SudokuDeck: React.FC<{
   }
 
   const checkCol = (r: number, c: number, newVal: number) => {
-    board.forEach((row, i: number) => {
+    board.forEach((row, i) => {
       if (r !== i && row[c].value === newVal) {
         setConflictedCells([
           ...useStore.getState().conflictedCells,
@@ -86,7 +87,30 @@ const SudokuDeck: React.FC<{
     })
   }
 
-  const checkSquare = (r: number, c: number, newVal: number) => {}
+  const checkSquare = (r: number, c: number, newVal: number) => {
+    const cellGroupRow = Math.floor(r / 3)
+    const cellGroupCol = Math.floor(c / 3)
+
+    console.log(cellGroupRow, cellGroupCol)
+
+    board.slice(cellGroupRow, cellGroupRow + 3).forEach((row, i) =>
+      row.slice(cellGroupCol, cellGroupCol + 3).forEach(({ value }, j) => {
+        if (r !== i && c !== j && value === newVal) {
+          setConflictedCells([
+            ...useStore.getState().conflictedCells,
+            {
+              r: i,
+              c: j,
+              move: {
+                r,
+                c,
+              },
+            },
+          ])
+        }
+      })
+    )
+  }
 
   return (
     <DeckWrapper>
