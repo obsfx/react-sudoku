@@ -331,3 +331,13 @@ export const HistoryContainer = styled.div`
     }
   }
 `
+
+export const StartPlaying = styled(DeckSelectSudokuButton)`
+  display: flex;
+  justify-content: center;
+  background-color: #bddb9e;
+
+  &:hover {
+    background-color: #9db782;
+  }
+`

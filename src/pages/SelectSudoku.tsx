@@ -15,6 +15,7 @@ const SelectSudoku: React.FC = () => {
 
   const handleStart = (board: { value: number; predefined: boolean }[][]) => {
     reset()
+    localStorage.removeItem('SUDOKU_SAVE')
     setBoard(board)
   }
 
