@@ -3,6 +3,7 @@ import create, { SetState } from 'zustand'
 export interface State {
   time: number
   board: null | { value: number; predefined: boolean }[][]
+  emptyCellCount: number
   moves: { r: number; c: number; value: number }[]
   conflictedCells: { r: number; c: number; value: number }[]
 
@@ -21,6 +22,7 @@ const useStore = create<State>(
     time: 0,
     board: null,
     moves: [],
+    emptyCellCount: 0,
     conflictedCells: [],
 
     reset: () =>
@@ -31,8 +33,18 @@ const useStore = create<State>(
         conflictedCells: [],
       }),
     setTime: (time: number) => set({ time }),
-    setBoard: (board: null | { value: number; predefined: boolean }[][]) => set({ board }),
-    setCell: (r: number, c: number, newVal: number) =>
+    setBoard: (board: null | { value: number; predefined: boolean }[][]) => {
+      set({ board })
+      if (board) {
+        set({
+          emptyCellCount: board.reduce(
+            (prev, current) => prev + current.filter(({ predefined }) => !predefined).length,
+            0
+          ),
+        })
+      }
+    },
+    setCell: (r: number, c: number, newVal: number) => {
       set((state) =>
         !state.board
           ? { board: null }
@@ -43,8 +55,20 @@ const useStore = create<State>(
                 )
               ),
             }
-      ),
-    setMoves: (moves: { r: number; c: number; value: number }[]) => set({ moves }),
+      )
+
+      set((state) => ({
+        emptyCellCount: state.board
+          ? state.board.reduce(
+              (prev, current) => prev + current.filter(({ value }) => value === 0).length,
+              0
+            )
+          : 0,
+      }))
+    },
+    setMoves: (moves: { r: number; c: number; value: number }[]) => {
+      set({ moves })
+    },
     setConflictedCells: (
       cells: { r: number; c: number; value: number; move: { r: number; c: number } }[]
     ) => set({ conflictedCells: cells }),

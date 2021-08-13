@@ -54,6 +54,7 @@ const Sudoku: React.FC = () => {
     const lastMove = moves[moves.length - 1]
     setCell(lastMove.r, lastMove.c, 0)
     setMoves(moves.slice(0, moves.length - 1))
+    console.log(useStore.getState().emptyCellCount)
   }
 
   return (

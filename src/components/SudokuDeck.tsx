@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DeckWrapper, DeckRow, DeckCell, DeckInput } from '../theme'
 import useStore from '../store'
 
@@ -7,9 +8,17 @@ const SudokuDeck: React.FC<{
   cellWidth: string
   cellHeight: string
 }> = ({ board, preview, cellWidth, cellHeight }) => {
+  const [valueBuffer, setValueBuffer] = useState(0)
+
   const setCell = useStore((state) => state.setCell)
   const moves = useStore((state) => state.moves)
+  const emptyCellCount = useStore((state) => state.emptyCellCount)
   const setMoves = useStore((state) => state.setMoves)
+
+  const handleOnFocus = (r: number, c: number, value: string) => {
+    setValueBuffer(Number(value))
+    setCell(r, c, 0)
+  }
 
   const handleOnChange = (r: number, c: number, value: string) => {
     if (/^[1-9]+$/.test(value)) {
@@ -18,7 +27,13 @@ const SudokuDeck: React.FC<{
   }
 
   const handleOnBlur = (r: number, c: number, value: string) => {
-    setMoves([...moves, { r, c, value: Number(value) }])
+    if (valueBuffer !== 0) {
+      setCell(r, c, valueBuffer)
+    } else if (Number(value) !== 0) {
+      setMoves([...moves, { r, c, value: Number(value) }])
+    }
+
+    console.log(emptyCellCount)
   }
 
   return (
@@ -46,8 +61,9 @@ const SudokuDeck: React.FC<{
                   borderBottom={i < arr.length - 1}
                   width={cellWidth}
                   height={cellHeight}
-                  onChange={(e) => value === 0 && !preview && handleOnChange(i, j, e.target.value)}
-                  onBlur={(e) => handleOnBlur(i, j, e.target.value)}
+                  onFocus={(e) => !predefined && !preview && handleOnFocus(i, j, e.target.value)}
+                  onChange={(e) => !predefined && !preview && handleOnChange(i, j, e.target.value)}
+                  onBlur={(e) => !predefined && !preview && handleOnBlur(i, j, e.target.value)}
                 />
               </DeckCell>
             ))}
