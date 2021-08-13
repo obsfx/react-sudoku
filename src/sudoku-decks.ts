@@ -1,140 +1,3126 @@
-const decks = {
-  data: [
-    {
-      id: 1,
-      board: [
-        [0, 0, 3, 0, 2, 0, 6, 0, 0],
-        [9, 0, 0, 3, 0, 5, 0, 0, 1],
-        [0, 0, 1, 8, 0, 6, 4, 0, 0],
-        [0, 0, 8, 1, 0, 2, 9, 0, 0],
-        [7, 0, 0, 0, 0, 0, 0, 0, 8],
-        [0, 0, 6, 7, 0, 8, 2, 0, 0],
-        [0, 0, 2, 6, 0, 9, 5, 0, 0],
-        [8, 0, 0, 2, 0, 3, 0, 0, 9],
-        [0, 0, 5, 0, 1, 0, 3, 0, 0],
+const decks = [
+  {
+    id: 1,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-
-    {
-      id: 2,
-      board: [
-        [2, 0, 0, 0, 8, 0, 3, 0, 0],
-        [0, 6, 0, 0, 7, 0, 0, 8, 4],
-        [0, 3, 0, 5, 0, 0, 2, 0, 9],
-        [0, 0, 0, 1, 0, 5, 4, 0, 8],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [4, 0, 2, 7, 0, 6, 0, 0, 0],
-        [3, 0, 1, 0, 0, 7, 0, 4, 0],
-        [7, 2, 0, 0, 4, 0, 0, 6, 0],
-        [0, 0, 4, 0, 1, 0, 0, 0, 3],
+      [
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
       ],
-    },
-
-    {
-      id: 3,
-      board: [
-        [0, 0, 0, 0, 0, 0, 9, 0, 7],
-        [0, 0, 0, 4, 2, 0, 1, 8, 0],
-        [0, 0, 0, 7, 0, 5, 0, 2, 6],
-        [1, 0, 0, 9, 0, 4, 0, 0, 0],
-        [0, 5, 0, 0, 0, 0, 0, 4, 0],
-        [0, 0, 0, 5, 0, 7, 0, 0, 9],
-        [9, 2, 0, 1, 0, 8, 0, 0, 0],
-        [0, 3, 4, 0, 5, 9, 0, 0, 0],
-        [5, 0, 7, 0, 0, 0, 0, 0, 0],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-
-    {
-      id: 4,
-      board: [
-        [0, 3, 0, 0, 5, 0, 0, 4, 0],
-        [0, 0, 8, 0, 1, 0, 5, 0, 0],
-        [4, 6, 0, 0, 0, 0, 0, 1, 2],
-        [0, 7, 0, 5, 0, 2, 0, 8, 0],
-        [0, 0, 0, 6, 0, 3, 0, 0, 0],
-        [0, 4, 0, 1, 0, 9, 0, 3, 0],
-        [2, 5, 0, 0, 0, 0, 0, 9, 8],
-        [0, 0, 1, 0, 2, 0, 6, 0, 0],
-        [0, 8, 0, 0, 6, 0, 0, 2, 0],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-
-    {
-      id: 5,
-      board: [
-        [0, 2, 0, 8, 1, 0, 7, 4, 0],
-        [7, 0, 0, 0, 0, 3, 1, 0, 0],
-        [0, 9, 0, 0, 0, 2, 8, 0, 5],
-        [0, 0, 9, 0, 4, 0, 0, 8, 7],
-        [4, 0, 0, 2, 0, 8, 0, 0, 3],
-        [1, 6, 0, 0, 3, 0, 2, 0, 0],
-        [3, 0, 2, 7, 0, 0, 0, 6, 0],
-        [0, 0, 5, 6, 0, 0, 0, 0, 8],
-        [0, 7, 6, 0, 5, 1, 0, 9, 0],
+      [
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
       ],
-    },
-
-    {
-      id: 6,
-      board: [
-        [1, 0, 0, 9, 2, 0, 0, 0, 0],
-        [5, 2, 4, 0, 1, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 7, 0],
-        [0, 5, 0, 0, 0, 8, 1, 0, 2],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [4, 0, 2, 7, 0, 0, 0, 9, 0],
-        [0, 6, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 3, 0, 9, 4, 5],
-        [0, 0, 0, 0, 7, 1, 0, 0, 6],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-
-    {
-      id: 7,
-      board: [
-        [0, 4, 3, 0, 8, 0, 2, 5, 0],
-        [6, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 1, 0, 9, 4],
-        [9, 0, 0, 0, 0, 4, 0, 7, 0],
-        [0, 0, 0, 6, 0, 8, 0, 0, 0],
-        [0, 1, 0, 2, 0, 0, 0, 0, 3],
-        [8, 2, 0, 5, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 5],
-        [0, 3, 4, 0, 9, 0, 7, 1, 0],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-
-    {
-      id: 8,
-      board: [
-        [4, 8, 0, 0, 0, 6, 9, 0, 2],
-        [0, 0, 2, 0, 0, 8, 0, 0, 1],
-        [9, 0, 0, 3, 7, 0, 0, 6, 0],
-        [8, 4, 0, 0, 1, 0, 2, 0, 0],
-        [0, 0, 3, 7, 0, 4, 1, 0, 0],
-        [0, 0, 1, 0, 6, 0, 0, 4, 9],
-        [0, 2, 0, 0, 8, 5, 0, 0, 7],
-        [7, 0, 0, 9, 0, 0, 6, 0, 0],
-        [6, 0, 9, 2, 0, 0, 0, 1, 8],
+      [
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
       ],
-    },
-
-    {
-      id: 9,
-      board: [
-        [0, 0, 0, 9, 0, 0, 0, 0, 2],
-        [0, 5, 0, 1, 2, 3, 4, 0, 0],
-        [0, 3, 0, 0, 0, 0, 1, 6, 0],
-        [9, 0, 8, 0, 0, 0, 0, 0, 0],
-        [0, 7, 0, 0, 0, 0, 0, 9, 0],
-        [0, 0, 0, 0, 0, 0, 2, 0, 5],
-        [0, 9, 1, 0, 0, 0, 0, 5, 0],
-        [0, 0, 7, 4, 3, 9, 0, 2, 0],
-        [4, 0, 0, 0, 0, 7, 0, 0, 0],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
       ],
-    },
-  ],
-}
-
+    ],
+  },
+  {
+    id: 2,
+    board: [
+      [
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 3,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+    ],
+  },
+  {
+    id: 4,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+    ],
+  },
+  {
+    id: 5,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+    ],
+  },
+  {
+    id: 6,
+    board: [
+      [
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 7,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+    ],
+  },
+  {
+    id: 8,
+    board: [
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 9,
+    board: [
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 6,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 8,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 1,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 5,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 3,
+          predefined: true,
+        },
+        {
+          value: 9,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 2,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+      [
+        {
+          value: 4,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 7,
+          predefined: true,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+        {
+          value: 0,
+          predefined: false,
+        },
+      ],
+    ],
+  },
+]
 export default decks

@@ -2,12 +2,12 @@ import create, { SetState } from 'zustand'
 
 export interface State {
   time: number
-  board: null | number[][]
+  board: null | { value: number; predefined: boolean }[][]
   moves: { r: number; c: number; value: number }[]
   conflictedCells: { r: number; c: number; value: number }[]
 
   setTime: (time: number) => void
-  setBoard: (board: null | number[][]) => void
+  setBoard: (board: null | { value: number; predefined: boolean }[][]) => void
   setCell: (r: number, c: number, value: number) => void
   setMoves: (moves: { r: number; c: number; value: number }[]) => void
   setConflictedCells: (cells: { r: number; c: number; value: number }[]) => void
@@ -21,14 +21,16 @@ const useStore = create<State>(
     conflictedCells: [],
 
     setTime: (time: number) => set({ time }),
-    setBoard: (board: null | number[][]) => set({ board }),
-    setCell: (r: number, c: number, value: number) =>
+    setBoard: (board: null | { value: number; predefined: boolean }[][]) => set({ board }),
+    setCell: (r: number, c: number, newVal: number) =>
       set((state) =>
         !state.board
           ? { board: null }
           : {
-              board: state.board.map((row: number[], i: number) =>
-                row.map((col: number, j: number) => (i === r && j === c ? value : col))
+              board: state.board.map((row: { value: number; predefined: boolean }[], i: number) =>
+                row.map(({ value, predefined }, j: number) =>
+                  i === r && j === c ? { value: newVal, predefined } : { value, predefined }
+                )
               ),
             }
       ),

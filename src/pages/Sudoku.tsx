@@ -51,7 +51,7 @@ const Sudoku: React.FC = () => {
           </DeckBlurred>
         )}
         <SudokuDeck
-          board={board || Decks.data[0].board}
+          board={board || Decks[0].board}
           preview={!!!board}
           cellWidth="2.4rem"
           cellHeight="2.4rem"

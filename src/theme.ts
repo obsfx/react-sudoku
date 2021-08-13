@@ -211,7 +211,7 @@ export const SudokuPreviewWrapper = styled.div`
 export const SudokuStartButton = styled(DeckSelectSudokuButton)``
 
 export const Card = styled.div`
-  padding: 1.4rem 1.8rem;
+  padding: 1rem 1.4rem;
   background-color: #dfffbf;
   border-radius: 0.6rem;
   width: 100%;
@@ -221,11 +221,11 @@ export const Card = styled.div`
 
 export const CardTitle = styled.div`
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
 `
 
 export const CardValue = styled.div`
-  padding-top: 0.6rem;
+  padding-top: 0.2rem;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.6rem;
 `
