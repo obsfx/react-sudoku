@@ -42,8 +42,9 @@ const SudokuDeck: React.FC<{
       checkRow(r, c, cellVal)
       checkCol(r, c, cellVal)
     }
+
     setMoves([
-      ...moves.filter(({ r: mr, c: mc }) => mr !== r && mc !== c),
+      ...moves.filter(({ r: mr, c: mc }) => (mr === r && mc === c ? false : true)),
       { r, c, value: Number(cellVal) },
     ])
     console.log(useStore.getState().emptyCellCount)
@@ -84,6 +85,8 @@ const SudokuDeck: React.FC<{
       }
     })
   }
+
+  const checkSquare = (r: number, c: number, newVal: number) => {}
 
   return (
     <DeckWrapper>
