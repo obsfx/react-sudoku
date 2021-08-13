@@ -15,7 +15,6 @@ const SudokuDeck: React.FC<{
   const setMoves = useStore((state) => state.setMoves)
   const conflictedCells = useStore((state) => state.conflictedCells)
   const setConflictedCells = useStore((state) => state.setConflictedCells)
-  const emptyCellCount = useStore((state) => state.emptyCellCount)
 
   const handleOnFocus = (r: number, c: number, value: string) => {
     setValueBuffer(Number(value))

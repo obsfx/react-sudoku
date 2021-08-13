@@ -1,7 +1,11 @@
-import { ContentWrapper } from '../theme'
+import { ContentWrapper, HistoryContainer, Card, CardTitle, CardValue } from '../theme'
 
 const GameHistory: React.FC = () => {
-  return <ContentWrapper>test</ContentWrapper>
+  return (
+    <ContentWrapper>
+      <Card></Card>
+    </ContentWrapper>
+  )
 }
 
 export default GameHistory

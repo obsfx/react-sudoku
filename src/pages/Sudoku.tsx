@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import {
   ContentWrapper,
@@ -11,22 +12,31 @@ import {
 
 import SudokuDeck from '../components/SudokuDeck'
 import Time from '../components/Time'
+import Modal from '../components/Modal'
 
 import Decks from '../sudoku-decks'
 import useStore from '../store'
 
 const Sudoku: React.FC = () => {
+  const [showModal, setShowModal] = useState(false)
+  const [modalContent, setModalContent] = useState('')
+  const [completed, setCompleted] = useState(false)
+
+  const reset = useStore((state) => state.reset)
   const board = useStore((state) => state.board)
   const time = useStore((state) => state.time)
   const setTime = useStore((state) => state.setTime)
   const setCell = useStore((state) => state.setCell)
   const moves = useStore((state) => state.moves)
   const setMoves = useStore((state) => state.setMoves)
+  const emptyCellCount = useStore((state) => state.emptyCellCount)
   const conflictedCells = useStore((state) => state.conflictedCells)
   const setConflictedCells = useStore((state) => state.setConflictedCells)
 
+  const history = useHistory()
+
   useEffect(() => {
-    if (board.length > 0) {
+    if (board.length > 0 && !completed) {
       const interval = setInterval(() => {
         setTime(time + 1)
       }, 1000)
@@ -37,14 +47,19 @@ const Sudoku: React.FC = () => {
   })
 
   useEffect(() => {
-    localStorage.setItem(
-      'SUDOKU_SAVE',
-      JSON.stringify({
-        time,
-        board,
-      })
-    )
-  }, [time, board])
+    if (board.length > 0) {
+      localStorage.setItem(
+        'SUDOKU_SAVE',
+        JSON.stringify({
+          time,
+          board,
+          moves,
+          emptyCellCount,
+          conflictedCells,
+        })
+      )
+    }
+  }, [time, board, moves, emptyCellCount, conflictedCells])
 
   const handleUndo = () => {
     const lastMove = moves[moves.length - 1]
@@ -55,15 +70,65 @@ const Sudoku: React.FC = () => {
     )
   }
 
+  const handleCheck = () => {
+    if (board.length === 0) {
+      return
+    }
+
+    if (emptyCellCount === 0 && conflictedCells.length === 0) {
+      setCompleted(true)
+      setModalContent('You have solved this sudoku.')
+      setShowModal(true)
+
+      const historyStorage = localStorage.getItem('SUDOKU_HISTORY')
+
+      const historyArr = historyStorage ? JSON.parse(historyStorage) : []
+
+      localStorage.removeItem('SUDOKU_SAVE')
+
+      localStorage.setItem(
+        'SUDOKU_HISTORY',
+        JSON.stringify({
+          data: [
+            ...historyArr,
+            {
+              time,
+              id: Date.now(),
+            },
+          ],
+        })
+      )
+    } else if (conflictedCells.length > 0) {
+      setModalContent('You have to solve the conflicts to complete this sudoku.')
+      setShowModal(true)
+    } else if (emptyCellCount > 0) {
+      setModalContent('You have to fill all cells.')
+      setShowModal(true)
+    }
+  }
+
   return (
     <ContentWrapper>
       <Time time={time} />
+      <Modal
+        show={showModal}
+        fail={!completed}
+        success={completed}
+        content={modalContent}
+        onClose={() => {
+          setShowModal(false)
+          if (completed) {
+            history.push('/history')
+            reset()
+          }
+        }}
+      />
 
       <SudokuButtonWrapper>
         <SudokuButton onClick={handleUndo} disabled={moves.length === 0}>
           Undo
         </SudokuButton>
-        <SudokuButton>Check</SudokuButton>
+        <SudokuButton onClick={handleCheck}>Check</SudokuButton>
       </SudokuButtonWrapper>
 
       <DeckContainer>

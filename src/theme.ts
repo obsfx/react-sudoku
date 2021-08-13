@@ -43,7 +43,6 @@ export const ContentWrapper = styled.div`
   max-width: 900px;
   padding: 2vh 1rem;
   margin: auto;
-  position: relative;
 `
 
 export const ContentTitle = styled.div`
@@ -126,6 +125,8 @@ export const DeckInput = styled.input<{
   font-size: 1.2rem;
   font-weight: 500;
 
+  ${({ conflict }) => (conflict ? `border-color: #ff9a9a;` : '')}
+
   ${({ predefined, readOnly }) =>
     !predefined && !readOnly
       ? `
@@ -146,7 +147,7 @@ export const DeckContainer = styled.div`
 `
 
 export const DeckBlurred = styled.div`
-  backdrop-filter: blur(4px);
+  backdrop-filter: saturate(80%) blur(3px);
   position: absolute;
   top: 0;
   left: 0;
@@ -262,3 +263,59 @@ export const CardValue = styled.div`
   font-weight: bold;
   font-size: 1.6rem;
 `
+
+export const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: saturate(180%) blur(4px);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`
+
+export const ModalBody = styled.div`
+  padding: 1.6rem;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+`
+
+export const ModalContent = styled.div<{
+  success?: boolean
+  fail?: boolean
+}>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 1.4rem;
+  font-size: 1rem;
+  color: ${({ success, fail }) => (success ? '#0c4114' : fail ? '#961e1e' : '#222222')};
+  background-color: ${({ success, fail }) => (success ? '#d1ffd9' : fail ? '#ffd6d6' : '#e2e2e2')};
+  border-radius: 0.4rem;
+  box-shadow: 0px 0px 14px -4px #e4e4e4;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  ${SudokuButton} {
+    color: ${({ success, fail }) => (success ? '#0c4114' : fail ? '#961e1e' : '#222222')};
+    background-color: ${({ success, fail }) =>
+      success ? '#d1ffd9' : fail ? '#ffd6d6' : '#e2e2e2'};
+    border: 1px solid;
+    border-color: ${({ success, fail }) => (success ? '#0c4114' : fail ? '#961e1e' : '#222222')};
+    font-size: 1rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+`
+
+export const HistoryContainer = styled.div``
